@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+>
+ 
+    <!--включение поодержки анно-->
+    <mvc:annotation-driven />
+    
+    <!--в каких пакетах будет происходить поиск компонентов-->
+    <context:component-scan base-package="com.holodniysvitanok.weatherstationwebserver" />
+    
+    <!--ресурсы (то что не обрабаывает спринг контроллер)-->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    
+    <!--настройка отображения-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/views/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+    <!--настройка подключения к БД (ВРЕМЕННО !!!!!!!)-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/weather_station_db"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    
+    <!--фабрика сессий для хибернейта-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="packagesToScan" value="com.holodniysvitanok.weatherstationwebserver" />
+    </bean>
+    
+    <!--транзакции-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    
+    
+    <!--бины конфигурации ДАО-->
+<!--    <bean id="measuringSensorDao" class="com.holodniysvitanok.weatherstationwebserver.dao.daoimpl.MeasuringSensorDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>-->
+<!--    <bean id="measurementPointDao" class="com.holodniysvitanok.weatherstationwebserver.dao.daoimpl.MeasurementPointDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>-->
+
+    
+</beans>
