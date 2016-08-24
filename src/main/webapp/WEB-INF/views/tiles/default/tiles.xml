@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/views/tiles/default/layout.jsp">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/default/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/default/footer.jsp" />
+	</definition>
+
+	<definition name="home" extends="baseLayout">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/main/home.jsp" />
+	</definition>
+	
+	<definition name="download" extends="baseLayout">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/main/downlaod.jsp" />
+	</definition>
+	
+	<definition name="history" extends="baseLayout">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/main/history.jsp" />
+	</definition>
+	
+	<definition name="authors" extends="baseLayout">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/main/authors.jsp" />
+	</definition>
+	<definition name="authorization" extends="baseLayout">
+		<put-attribute name="title" value="Авторизация" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/main/authorization.jsp" />
+	</definition>
+	
+</tiles-definitions>

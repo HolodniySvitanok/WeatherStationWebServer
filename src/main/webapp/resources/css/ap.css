@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+#leftcol {
+	float: left;
+	width: 200px;
+}
+
+#rightcol {
+	margin-left: 220px;
+}
+
+#leftMainDiv {
+	margin-left: 20px;
+	margin-top: 50px;
+	border-right: 1px solid silver;
+	margin-bottom: 50px;
+}
+.leftDiv1 {
+	margin-bottom: 15px;
+}
+#leftMain {	
+	margin-top: 50px;
+}
+
+#leftMainDiv a:hover{
+	color: blue;
+}
+
+#leftMainDiv a{
+	text-decoration: none; 
+	color: black;
+}
+table {
+	 border: 1px solid #333; 
+}
+td{
+
+    border: 1px solid #333; 
+    padding-right: 20px; 
+    padding-left: 20px; 
+   
+}
+.txt{
+	text-align: center;
+	
+}

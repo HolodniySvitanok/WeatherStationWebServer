@@ -9,6 +9,8 @@ public interface MeasuringSensorDAO {
     void createMeasuringSensor(MeasuringSensor measuringSensor);
 
     List<MeasuringSensor> getAllMeasuringSensors();
+    
+    List<MeasuringSensor> getAllActiveMeasuringSensors();
 
     MeasuringSensor getOneMeasuringSensorById(int id);
 

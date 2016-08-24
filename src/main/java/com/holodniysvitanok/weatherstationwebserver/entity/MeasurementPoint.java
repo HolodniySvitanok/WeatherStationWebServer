@@ -35,7 +35,7 @@ public class MeasurementPoint implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeMeasurement typeMeasurement;
 
-    @ManyToOne(fetch = FetchType.LAZY) // много полей данной таблицы будут указывать на одно поле другой таблицы
+    @ManyToOne(fetch = FetchType.EAGER) // много полей данной таблицы будут указывать на одно поле другой таблицы
     @JoinColumn(name = "id_measuring_sensor")
     private MeasuringSensor measuringSensor; // датчик который сделал это измерение
 
@@ -113,11 +113,6 @@ public class MeasurementPoint implements Serializable {
             return null;
         }
     }
-
-    @Override
-    public String toString() {
-        return "MeasurementPoint{" + "id=" + id + ", value=" + value + ", datePoint=" + datePoint + ", typeMeasurement=" + typeMeasurement + ", measuringSensor=" + measuringSensor + '}';
-    }
-    
+   
     
 }

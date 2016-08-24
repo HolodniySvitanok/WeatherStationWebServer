@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+
+#body{
+	width: 900px;
+	margin:0 auto;
+}
+
+.text{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 24;
+}
+
+#table1{
+	width: 500px;
+	background-color: #eaffeb;
+	border: 1px solid black;
+	margin: 50px auto;
+	text-align: center;
+}
+
+#image{
+	text-align: center;	
+}

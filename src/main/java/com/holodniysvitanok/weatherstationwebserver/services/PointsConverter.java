@@ -60,13 +60,16 @@ public class PointsConverter {
 
         for (MeasurementPoint measurementPoint : measurementPoints) {
             Point point = new Point();
-            if (measurementPoint.getTypeMeasurement()
-                    == MeasurementPoint.TypeMeasurement.Temperature) {
-                float value = (float) measurementPoint.getValue() / 10;
-                point.setY(value);
-            } else {
+
+            
+            
+//            if (measurementPoint.getTypeMeasurement() == MeasurementPoint.TypeMeasurement.Temperature) {
+//                float value = (float) measurementPoint.getValue() / 10;
+//                point.setY(value);
+//            } else {
                 point.setY(measurementPoint.getValue());
-            }
+//            }
+            
             point.setDate(measurementPoint.getDatePoint());
             pointers.addGraphicsPoint(point);
         }

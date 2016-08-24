@@ -2,6 +2,8 @@ package com.holodniysvitanok.weatherstationwebserver.dao.daoimpl;
 
 import com.holodniysvitanok.weatherstationwebserver.dao.MeasurementPointDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint;
+import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint.TypeMeasurement;
+import com.holodniysvitanok.weatherstationwebserver.entity.MeasuringSensor;
 import com.holodniysvitanok.weatherstationwebserver.services.Period;
 
 import java.util.Date;
@@ -17,56 +19,79 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-        
-    @Override
-    @Transactional
-    public void createMeasurementPoint(MeasurementPoint mPoint) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(mPoint);
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    }
+	
 
-    @Override
-    @Transactional
-    public List<MeasurementPoint> getAllMeasurementPoint() {
+	
+	@Override
+	@Transactional
+	public void createMeasurementPoint(MeasurementPoint mPoint) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(mPoint);
 
-        Session session = sessionFactory.getCurrentSession();
-        List<MeasurementPoint> list
-                = session.createCriteria(MeasurementPoint.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+	}
 
-        return list;
-    }
+	@Override
+	@Transactional
+	public List<MeasurementPoint> getAllMeasurementPoint() {
 
-    @Override
-    public void getOneMeasurementPointById(int id) {
-    }
+		Session session = sessionFactory.getCurrentSession();
+		List<MeasurementPoint> list = session.createCriteria(MeasurementPoint.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
-    @Override
-    public void deleteMeasurementPoint(MeasurementPoint mPoint) {
-    }
+		return list;
+	}
 
-    @Override
-    public void updateMeasurementPoint(MeasurementPoint mPoint) {
+	@Override
+	public void getOneMeasurementPointById(int id) {
+	}
 
-    }
+	@Override
+	public void deleteMeasurementPoint(MeasurementPoint mPoint) {
+	}
 
-    @Override
-    @Transactional
-    public List<MeasurementPoint> getMeasurementPointInPeriod(Date stDate, Date enDate, MeasurementPoint.TypeMeasurement type, int sensorId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from MeasurementPoint where id_measuring_sensor = :sensorId and datePoint between :startDate and :endDate ");
-        query.setDate("startDate", stDate);
-        query.setDate("endDate", enDate);
-        query.setParameter("sensorId", sensorId);
-        return query.list();
-    }
+	@Override
+	public void updateMeasurementPoint(MeasurementPoint mPoint) {
 
-    @Override
-    @Transactional
-    public List<MeasurementPoint> getMeasurementPointInPeriod(Period period) {
-        return getMeasurementPointInPeriod(period.getStDate(), period.getEndDate(), period.getType(), period.getSensorId());
-    }
+	}
+
+	@Override
+	@Transactional
+	public List<MeasurementPoint> getMeasurementPointInPeriod(Date stDate, Date enDate,
+			MeasurementPoint.TypeMeasurement type, int sensorId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(
+				"from MeasurementPoint where id_measuring_sensor = :sensorId and typeMeasurement = :type and datePoint between :startDate and :endDate ");
+		query.setDate("startDate", stDate);
+		query.setDate("endDate", enDate);
+		query.setParameter("type", type);
+		query.setParameter("sensorId", sensorId);
+		return query.list();
+	}
+
+	@Override
+	@Transactional
+	public List<MeasurementPoint> getMeasurementPointInPeriod(Period period) {
+		return getMeasurementPointInPeriod(period.getStDate(), period.getEndDate(), period.getType(),
+				period.getSensorId());
+	}
+
+	@Override
+	@Transactional
+	public MeasurementPoint getLastMeasurementPoint(TypeMeasurement typeMeasurement, int sensorId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session
+				.createQuery("from MeasurementPoint where typeMeasurement = :typeM and id_measuring_sensor = :sensorId "
+						+ "order by id_measurement_point desc ");
+
+		query.setParameter("typeM", typeMeasurement);
+		query.setParameter("sensorId", sensorId);
+		query.setMaxResults(1);
+		return (MeasurementPoint) query.uniqueResult();
+	}
+
+
 
 }

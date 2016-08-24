@@ -10,10 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Point {
 
-    private Number y;
+    private int y;
     private Date date;
 
-    public void setY(Number y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -21,7 +21,7 @@ public class Point {
         this.date = date;
     }
 
-    public Number getY() {
+    public int getY() {
         return y;
     }
 
@@ -29,7 +29,7 @@ public class Point {
         return date;
     }
 
-    public Point(Number y, Date date) {
+    public Point(int y, Date date) {
         this.y = y;
         this.date = date;
     }

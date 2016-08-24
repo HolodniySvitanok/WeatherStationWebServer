@@ -32,15 +32,32 @@ public class MeasuringSensor implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "measuringSensor") // одно поле это таблицы будет указывать на много полей в другой таблиц
     private Set<MeasurementPoint> measurementPoint;
 
-    public MeasuringSensor( String location, String password) {
-        this.location = location;
-        this.password = password;
+    @Column(name="active_sensor")
+    private Boolean active;
+    
+
+
+    public MeasuringSensor(int id, String location, String password, Boolean active) {
+		this.id = id;
+		this.location = location;
+		this.password = password;
+		this.active = active;
+	}
+    
+    public MeasuringSensor( String location, String password, Boolean active) {
+    	this.location = location;
+    	this.password = password;
+    	this.active = active;
     }
 
-    public MeasuringSensor() {
+	public MeasuringSensor() {
     }
     
-    public int getId() {
+    public MeasuringSensor(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -71,6 +88,14 @@ public class MeasuringSensor implements Serializable {
     public void setMeasurementPoint(Set<MeasurementPoint> measurementPoint) {
         this.measurementPoint = measurementPoint;
     }
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
     
     

@@ -10,8 +10,9 @@
     
     
     <!-- Подключение объектов сущностей         -->
-    <mapping class="com.holodniysvitanok.weatherstationwebserver.models.MeasurementPoint"/>
-    <mapping class="com.holodniysvitanok.weatherstationwebserver.models.MeasuringSensor"/>
+    <mapping class="com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint"/>
+    <mapping class="com.holodniysvitanok.weatherstationwebserver.entity.MeasuringSensor"/>
+    <mapping class="com.holodniysvitanok.weatherstationwebserver.entity.User"/>
 
   </session-factory>
 </hibernate-configuration>

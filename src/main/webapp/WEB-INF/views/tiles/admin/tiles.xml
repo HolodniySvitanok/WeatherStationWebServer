@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+<tiles-definitions>
+
+	<definition name="adminLayout" template="/WEB-INF/views/tiles/admin/layout.jsp">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/default/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/default/header.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/tiles/admin/left.jsp" />
+	</definition>
+
+	<definition name="admin" extends="adminLayout">
+		<put-attribute name="title" value="My service" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/admin.jsp" />
+	</definition>
+	
+	<definition name="sensors" extends="adminLayout">
+		<put-attribute name="title" value="Датчики измерений" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/sensors.jsp" />
+	</definition>
+	
+	<definition name="setSensor" extends="adminLayout">
+		<put-attribute name="title" value="Редактирование параметров датчика" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/setSensor.jsp" />
+	</definition>
+	
+	<definition name="users" extends="adminLayout">
+		<put-attribute name="title" value="Пользователи" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/users.jsp" />
+	</definition>
+	
+	<definition name="setUser" extends="adminLayout">
+		<put-attribute name="title" value="Пользователи" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/addUser.jsp" />
+	</definition>
+	
+	<definition name="pointers" extends="adminLayout">
+		<put-attribute name="title" value="Пользователи" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/pointers.jsp" />
+	</definition>
+	
+	<definition name="setPoint" extends="adminLayout">
+		<put-attribute name="title" value="Пользователи" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/setPoint.jsp" />
+	</definition>
+
+	
+	
+</tiles-definitions>
