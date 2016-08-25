@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig;
+
 
 @Controller
 public class AdminController {
@@ -17,9 +19,9 @@ public class AdminController {
 	@Autowired
 	private ServletContext servletContext;
 	
-	@RequestMapping(value = "/hood/", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/", method = RequestMethod.GET)
 	public void adminPage(HttpServletResponse response) throws IOException {
-		response.sendRedirect(servletContext.getContextPath()+"/hood/sensors");
+		response.sendRedirect(servletContext.getContextPath()+"/"+GlobalConfig.HOOD_LINK+"/sensors");
 	}
 
 }

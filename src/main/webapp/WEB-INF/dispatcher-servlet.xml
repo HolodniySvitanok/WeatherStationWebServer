@@ -75,10 +75,10 @@
             <bean class="com.holodniysvitanok.weatherstationwebserver.interceptors.MainInterceptor" />
         </mvc:interceptor>
         
-<!--         <mvc:interceptor>
+<!--          <mvc:interceptor>
             <mvc:mapping path="/hood/*" />
             <bean class="com.holodniysvitanok.weatherstationwebserver.interceptors.AuthenticationInterceptor" />
-        </mvc:interceptor> -->
+        </mvc:interceptor> --> 
     </mvc:interceptors>
 
 

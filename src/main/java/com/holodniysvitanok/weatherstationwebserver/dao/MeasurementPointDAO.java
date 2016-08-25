@@ -13,8 +13,10 @@ public interface MeasurementPointDAO {
     void createMeasurementPoint(MeasurementPoint mPoint);
 
     List<MeasurementPoint> getAllMeasurementPoint();
+    
+    List<MeasurementPoint> getMeasurementPoint(int count); // =)
 
-    void getOneMeasurementPointById(int id);
+    MeasurementPoint getOneMeasurementPointById(long id);
 
     void deleteMeasurementPoint(MeasurementPoint mPoint);
 

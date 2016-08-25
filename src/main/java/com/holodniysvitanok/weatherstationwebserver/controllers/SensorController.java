@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.holodniysvitanok.weatherstationwebserver.dao.MeasuringSensorDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.MeasuringSensor;
+import com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig;
 
 @Controller
 public class SensorController {
@@ -25,7 +26,7 @@ public class SensorController {
 	@Autowired
 	private ServletContext servletContext;
 
-	@RequestMapping(value = "/hood/sensors", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/sensors", method = RequestMethod.GET)
 	public ModelAndView sensors(ModelAndView model) {
 
 		List<MeasuringSensor> allMeasuringSensors = measuringSensorDAO.getAllMeasuringSensors();
@@ -35,7 +36,7 @@ public class SensorController {
 		return model;
 	}
 
-	@RequestMapping(value = "/hood/setSensor", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/setSensor", method = RequestMethod.GET)
 	public String setSensor(HttpServletRequest request) {
 
 		String val = request.getParameter("id");
@@ -50,7 +51,7 @@ public class SensorController {
 		return "setSensor";
 	}
 
-	@RequestMapping(value = "/hood/setSensor", method = RequestMethod.POST)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/setSensor", method = RequestMethod.POST)
 	public void saveOrUpdateSensor(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		// НАДО ВАЛИДАЦИЯ
@@ -71,17 +72,17 @@ public class SensorController {
 		measuringSensorDAO.updateMeasuringSensor(sensor);
 		updateContext();
 
-		response.sendRedirect(servletContext.getContextPath() + "/hood/sensors");
+		response.sendRedirect(servletContext.getContextPath() + "/"+GlobalConfig.HOOD_LINK+"/sensors");
 	}
 
-	@RequestMapping(value = "/hood/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/delete", method = RequestMethod.GET)
 	public void deleteSensor(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 		measuringSensorDAO.deleteMeasuringSensor(new MeasuringSensor(id));
 
 		updateContext();
-		response.sendRedirect(servletContext.getContextPath() + "/hood/sensors");
+		response.sendRedirect(servletContext.getContextPath() + "/"+GlobalConfig.HOOD_LINK+"/sensors");
 	}
 
 	private void updateContext() {

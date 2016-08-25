@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig" %>
 
 <div class="header">
 	<div id="d1">
@@ -17,7 +18,7 @@
 			<a href="${pageContext.request.contextPath}/authors">Авторы</a>
 		</div>
 		<div class="link1">
-			<a href="${pageContext.request.contextPath}/hood/">Капот</a>
+			<a href="${pageContext.request.contextPath}/<%= GlobalConfig.HOOD_LINK %>/">Капот</a>
 		</div>
 	</div>
 	<div id="d2">

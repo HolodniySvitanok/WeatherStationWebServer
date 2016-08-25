@@ -21,40 +21,45 @@ public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	
-
 	
 	@Override
 	@Transactional
 	public void createMeasurementPoint(MeasurementPoint mPoint) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(mPoint);
-
 	}
 
 	@Override
 	@Transactional
 	public List<MeasurementPoint> getAllMeasurementPoint() {
-
 		Session session = sessionFactory.getCurrentSession();
 		List<MeasurementPoint> list = session.createCriteria(MeasurementPoint.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-
 		return list;
 	}
 
 	@Override
-	public void getOneMeasurementPointById(int id) {
+	@Transactional
+	public MeasurementPoint getOneMeasurementPointById(long id) {
+
+		Session session = sessionFactory.getCurrentSession();
+		MeasurementPoint point = session.get(MeasurementPoint.class, id);
+		return point;
+		
 	}
 
 	@Override
+	@Transactional
 	public void deleteMeasurementPoint(MeasurementPoint mPoint) {
+		Session session = sessionFactory.getCurrentSession();
+		session.remove(mPoint);
 	}
 
 	@Override
+	@Transactional
 	public void updateMeasurementPoint(MeasurementPoint mPoint) {
-
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(mPoint);
 	}
 
 	@Override
@@ -90,6 +95,15 @@ public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 		query.setParameter("sensorId", sensorId);
 		query.setMaxResults(1);
 		return (MeasurementPoint) query.uniqueResult();
+	}
+
+	@Override
+	@Transactional
+	public List<MeasurementPoint> getMeasurementPoint(int count) {
+		Session session = sessionFactory.getCurrentSession();
+		List<MeasurementPoint> list = session.createCriteria(MeasurementPoint.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setMaxResults(count).list();
+		return list;
 	}
 
 

@@ -1,15 +1,13 @@
 package com.holodniysvitanok.weatherstationwebserver.entity;
-
 import java.io.Serializable;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 // описание датчика который делает замеры 
 @Entity
@@ -28,14 +26,13 @@ public class MeasuringSensor implements Serializable {
 
     @Column(name = "password_measuring_sensor")
     private String password; // пароль датчика
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "measuringSensor") // одно поле это таблицы будет указывать на много полей в другой таблиц
-    private Set<MeasurementPoint> measurementPoint;
 
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "measuringSensor")
+//    private Set<MeasurementPoint> measurementPoint = new HashSet<>();
+//    
+    
     @Column(name="active_sensor")
     private Boolean active;
-    
-
 
     public MeasuringSensor(int id, String location, String password, Boolean active) {
 		this.id = id;
@@ -81,13 +78,13 @@ public class MeasuringSensor implements Serializable {
         this.password = password;
     }
 
-    public Set<MeasurementPoint> getMeasurementPoint() {
-        return measurementPoint;
-    }
-
-    public void setMeasurementPoint(Set<MeasurementPoint> measurementPoint) {
-        this.measurementPoint = measurementPoint;
-    }
+//    public Set<MeasurementPoint> getMeasurementPoint() {
+//        return measurementPoint;
+//    }
+//
+//    public void setMeasurementPoint(Set<MeasurementPoint> measurementPoint) {
+//        this.measurementPoint = measurementPoint;
+//    }
 
 	public boolean isActive() {
 		return active;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.holodniysvitanok.weatherstationwebserver.dao.UserDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.User;
+import com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig;
 
 @Controller
 public class UserController {
@@ -24,14 +25,14 @@ public class UserController {
 	@Autowired
 	private ServletContext servletContext;
 
-	@RequestMapping(value = "/hood/users", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/users", method = RequestMethod.GET)
 	public String users(HttpServletRequest request) throws IOException {
 		List<User> allUser = userDAO.getAllUser();
 		request.setAttribute("users", allUser);
 		return "users";
 	}
 
-	@RequestMapping(value = "/hood/setUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/setUser", method = RequestMethod.GET)
 	public String setUser(HttpServletRequest request) {
 
 		String val = request.getParameter("id");
@@ -46,7 +47,7 @@ public class UserController {
 		return "setUser";
 	}
 
-	@RequestMapping(value = "/hood/setUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/setUser", method = RequestMethod.POST)
 	public void saveOrUpdateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String idVal = request.getParameter("id");
@@ -64,17 +65,17 @@ public class UserController {
 
 		userDAO.saveOrUpdateUser(user);
 
-		response.sendRedirect(servletContext.getContextPath() + "/hood/users");
+		response.sendRedirect(servletContext.getContextPath() + "/"+GlobalConfig.HOOD_LINK+"/users");
 	}
 	
-	@RequestMapping(value = "/hood/deleteUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/"+GlobalConfig.HOOD_LINK+"/deleteUser", method = RequestMethod.GET)
 	public void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		userDAO.deleteUser(id);
 		
-		response.sendRedirect(servletContext.getContextPath() + "/hood/users");
+		response.sendRedirect(servletContext.getContextPath() + "/"+GlobalConfig.HOOD_LINK+"/users");
 	}
 
 }

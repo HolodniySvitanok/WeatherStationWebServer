@@ -32,7 +32,7 @@
 	
 	<definition name="setUser" extends="adminLayout">
 		<put-attribute name="title" value="Пользователи" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/hood/addUser.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/hood/setUser.jsp" />
 	</definition>
 	
 	<definition name="pointers" extends="adminLayout">

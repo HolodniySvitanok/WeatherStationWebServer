@@ -7,6 +7,7 @@
 
 #rightcol {
 	margin-left: 220px;
+	margin-top: 50px;
 }
 
 #leftMainDiv {
@@ -15,9 +16,11 @@
 	border-right: 1px solid silver;
 	margin-bottom: 50px;
 }
+
 .leftDiv1 {
 	margin-bottom: 15px;
 }
+
 #leftMain {	
 	margin-top: 50px;
 }
@@ -30,17 +33,17 @@
 	text-decoration: none; 
 	color: black;
 }
+
 table {
 	 border: 1px solid #333; 
 }
-td{
 
+td{
     border: 1px solid #333; 
     padding-right: 20px; 
     padding-left: 20px; 
-   
 }
+
 .txt{
 	text-align: center;
-	
 }

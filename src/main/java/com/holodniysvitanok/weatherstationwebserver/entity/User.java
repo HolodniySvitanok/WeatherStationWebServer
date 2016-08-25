@@ -23,6 +23,13 @@ public class User {
     @Column(name = "password_user")
     private String password;
     
+    /*
+     * Добавить ПРАВА
+     * 
+     * 
+     * */
+    
+    
 	public User(String login, String password) {
 		this.login = login;
 		this.password = password;

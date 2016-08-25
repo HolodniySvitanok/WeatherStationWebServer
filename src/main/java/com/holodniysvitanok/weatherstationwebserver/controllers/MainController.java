@@ -31,9 +31,10 @@ public class MainController {
 	public ModelAndView home(ModelAndView model, HttpServletRequest request) {
 
 		int location = 1;
-		Object object = request.getAttribute("location");
-		if( object != null){
-			location = Integer.parseInt((String)object);
+		String val = (String) request.getAttribute("location");
+		
+		if( val != null){
+			location = Integer.parseInt(val);
 		}
 		
 		MeasurementPoint temperature = measurementPointDAO.getLastMeasurementPoint(TypeMeasurement.Temperature, location);
@@ -41,6 +42,7 @@ public class MainController {
 		MeasurementPoint humidity = measurementPointDAO.getLastMeasurementPoint(TypeMeasurement.Humidity, location);
 
 		buildLink(request);
+			
 		
 		if (temperature != null && pressure != null && humidity != null) {
 			model.addObject("temperature", temperature.getValue());

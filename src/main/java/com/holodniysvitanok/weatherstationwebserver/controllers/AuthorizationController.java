@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.holodniysvitanok.weatherstationwebserver.dao.UserDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.User;
+import com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig;
 
 @Controller
 public class AuthorizationController {
@@ -44,7 +45,7 @@ public class AuthorizationController {
 		}
 
 		request.getSession().setAttribute("user", user);
-		response.sendRedirect(request.getServletContext().getContextPath()+"/hood/");
+		response.sendRedirect(request.getServletContext().getContextPath()+"/"+GlobalConfig.HOOD_LINK+"/");
 	
 		return null;
 	}

@@ -39,7 +39,7 @@ public class MeasuringSensorDAOImpl implements MeasuringSensorDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from MeasuringSensor where id = :id");
 		query.setParameter("id", id);
-		return (MeasuringSensor)query.getSingleResult();
+		return (MeasuringSensor) query.getSingleResult();
 	}
 
 	@Override
@@ -47,6 +47,7 @@ public class MeasuringSensorDAOImpl implements MeasuringSensorDAO {
 	public void deleteMeasuringSensor(MeasuringSensor measuringSensor) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(measuringSensor);
+
 	}
 
 	@Override

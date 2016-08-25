@@ -27,15 +27,6 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private ServletContext servletContext;
-
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		
-		getLocation(request, response);
-		
-		return super.preHandle(request, response, handler);
-	}
-
 	
 	
 	/* Инициализируем перехватчик
@@ -48,6 +39,19 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 		servletContext.setAttribute("listSensors", listSensors);
 		
 	}
+	
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		
+		getLocation(request, response);
+		
+		return super.preHandle(request, response, handler);
+	}
+
+	
+	
+
 
 	
 	
@@ -55,12 +59,15 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 
 		// Если есть сессия и есть аттрибут location то нет смысла дальше продолжать работу перехватчика
 		HttpSession session = request.getSession(false);
+		
 		if (session != null && session.getAttribute("location") != null) {
+			request.setAttribute("location", session.getAttribute("location"));
 			return;
 		}
 
 		// Если нет сессий, лезем в куки ... Если они есть, то берем аттрибут location и выходим
 		Cookie[] cookies = request.getCookies();
+		
 		if (cookies != null) {
 
 			for (int i = 0; i < cookies.length; i++) {

@@ -2,6 +2,8 @@ package com.holodniysvitanok.weatherstationwebserver.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+
 // точка измерения
 @Entity
 @Table(name = "measurement_point")
@@ -24,7 +30,7 @@ public class MeasurementPoint implements Serializable {
     @Id
     @Column(name = "id_measurement_point")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // id точки измерения
+    private long id; // id точки измерения
 
     @Column(name = "value_measurement_point")
     private int value; // значение точки
@@ -35,15 +41,16 @@ public class MeasurementPoint implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeMeasurement typeMeasurement;
 
-    @ManyToOne(fetch = FetchType.EAGER) // много полей данной таблицы будут указывать на одно поле другой таблицы
-    @JoinColumn(name = "id_measuring_sensor")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+	@JoinColumn(name = "id_measuring_sensor", nullable = false)
     private MeasuringSensor measuringSensor; // датчик который сделал это измерение
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -113,6 +120,19 @@ public class MeasurementPoint implements Serializable {
             return null;
         }
     }
+
+	public MeasurementPoint(long id) {
+		this.id = id;
+	}
+
+	public MeasurementPoint() {
+	}
+
+	@Override
+	public String toString() {
+		return "MeasurementPoint [id=" + id + ", value=" + value + ", datePoint=" + datePoint + ", typeMeasurement=" + typeMeasurement + "]";
+	}
    
+    
     
 }

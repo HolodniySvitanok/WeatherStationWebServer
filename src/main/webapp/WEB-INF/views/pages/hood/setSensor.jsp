@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<form action="${pageContext.servletContext.contextPath}/hood/setSensor" method="POST">
+<%@ page import="com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig" %>
+<form action="${pageContext.servletContext.contextPath}/<%= GlobalConfig.HOOD_LINK %>/setSensor" method="POST">
 	<table>
 		<c:if test="${not empty sensor.id}">
 			<tr>
