@@ -114,7 +114,7 @@ public class PointController {
 		String valDate = request.getParameter("data");
 		String valValue = request.getParameter("value");
 		String valIdSensor = request.getParameter("idSensor");
-		String valT = request.getParameter("t");
+		String valT = request.getParameter("ty");
 	
 		MeasurementPoint measurementPoint = new MeasurementPoint();
 		SimpleDateFormat format = new SimpleDateFormat(GlobalConfig.DATE_FORMAT_POINT);

@@ -2,7 +2,6 @@ package com.holodniysvitanok.weatherstationwebserver.dao;
 
 import java.util.List;
 
-import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint;
 import com.holodniysvitanok.weatherstationwebserver.entity.User;
 
 public interface UserDAO {

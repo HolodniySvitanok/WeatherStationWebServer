@@ -3,5 +3,5 @@
 <%@ page import="com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig" %>
 <div id="audi1">
 	<h4>Desktop client - Купцов Денис<br>
-	Web server - Губин Владислав</h4>
+	Web service - Губин Владислав</h4>
 </div>

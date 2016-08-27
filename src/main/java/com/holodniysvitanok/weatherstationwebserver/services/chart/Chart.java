@@ -21,12 +21,13 @@ public class Chart {
         this.width = width;
     }
     
-    public void createImage(Pointers pointers, OutputStream ous) throws IOException {
+    public void createImage(ChartPointers pointers, OutputStream ous) throws IOException {
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         TimeSeries ax = new TimeSeries(pointers.getyName(),Hour.class);
+        
         for (Point gp : pointers.getListPointers()) {
-            ax.addOrUpdate(new Hour(gp.getDate()), gp.getY());
+        	ax.addOrUpdate(new Hour(gp.getDate()), gp.getY());
         }
         dataset.addSeries(ax);
 

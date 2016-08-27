@@ -8,24 +8,24 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "pointers")
+@XmlRootElement(name = "ChartPointers")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Pointers {
+public class ChartPointers {
 
-	@XmlElement(name = "point")
+	@XmlElement(name = "Point")
 	private List<Point> listPointers; // набор точек для графика
 	private String xName; // название оси X
 	private String yName; // название оси Y
 	private String graphicName; // название графика
 
-	public Pointers(String xName, String yName, String graphicName) {
+	public ChartPointers(String xName, String yName, String graphicName) {
 		this.listPointers = new ArrayList<>();
 		this.xName = xName;
 		this.yName = yName;
 		this.graphicName = graphicName;
 	}
 
-	public Pointers() {
+	public ChartPointers() {
 	}
 
 	public String getxName() {

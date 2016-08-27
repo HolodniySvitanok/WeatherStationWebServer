@@ -3,7 +3,6 @@ package com.holodniysvitanok.weatherstationwebserver.dao.daoimpl;
 import com.holodniysvitanok.weatherstationwebserver.dao.MeasurementPointDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint;
 import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint.TypeMeasurement;
-import com.holodniysvitanok.weatherstationwebserver.entity.MeasuringSensor;
 import com.holodniysvitanok.weatherstationwebserver.services.Period;
 
 import java.util.Date;
@@ -68,9 +67,11 @@ public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 			MeasurementPoint.TypeMeasurement type, int sensorId) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(
-				"from MeasurementPoint where id_measuring_sensor = :sensorId and typeMeasurement = :type and datePoint between :startDate and :endDate ");
-		query.setDate("startDate", stDate);
-		query.setDate("endDate", enDate);
+				"from MeasurementPoint where id_measuring_sensor = :sensorId and typeMeasurement = :type and datePoint between :startDate and :endDate order by date_measurement_point asc ");
+//		query.setDate("startDate", stDate);
+//		query.setDate("endDate", enDate);
+		query.setTimestamp("startDate", stDate);
+		query.setTimestamp("endDate", enDate);
 		query.setParameter("type", type);
 		query.setParameter("sensorId", sensorId);
 		return query.list();
@@ -89,7 +90,7 @@ public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session
 				.createQuery("from MeasurementPoint where typeMeasurement = :typeM and id_measuring_sensor = :sensorId "
-						+ "order by id_measurement_point desc ");
+						+ "order by date_measurement_point desc");
 
 		query.setParameter("typeM", typeMeasurement);
 		query.setParameter("sensorId", sensorId);

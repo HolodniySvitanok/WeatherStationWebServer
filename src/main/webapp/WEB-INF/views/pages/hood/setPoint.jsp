@@ -26,9 +26,9 @@
 		<tr>
 			<td>Тип</td>
 			<td>
-				<select size="1" name="t">
+				<select size="1" name="ty">
 					<c:forEach var="type" items="${types}">
-						<option value="${type}"	  >${type}</option>
+						<option value="${type}" <c:if test="${point.typeMeasurement eq type}">selected</c:if> >${type}</option>
 					</c:forEach>
 				</select>
 			</td>
@@ -38,4 +38,3 @@
 		</tr>
 	</table>
 </form>
-<%-- <c:if test=${type}>selected</c:if>  --%>

@@ -7,6 +7,18 @@
 }
 
 .in1{
-	width: 20px;
+	width: 80px;
 	margin-right : 1px;
+}
+#his2{
+	margin: 50px auto;
+	width: 920px;
+}
+.his3{
+	border: 1px solid black; 
+    margin-top: 50px;
+/*     padding-left: 10px; 
+    padding-right: 10px; 
+    padding-top: 30px;  */
+    padding: 10px; 
 }

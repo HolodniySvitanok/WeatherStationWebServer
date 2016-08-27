@@ -3,12 +3,10 @@ package com.holodniysvitanok.weatherstationwebserver.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +41,7 @@ public class MeasurementPoint implements Serializable {
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
-	@JoinColumn(name = "id_measuring_sensor", nullable = false)
+    @JoinColumn(name = "id_measuring_sensor")
     private MeasuringSensor measuringSensor; // датчик который сделал это измерение
 
     public long getId() {
