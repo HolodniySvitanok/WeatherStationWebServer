@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,9 +52,9 @@ public class UserController {
 	public void saveOrUpdateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String idVal = request.getParameter("id");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-
+		String login = request.getParameter("login").trim();
+		String password = DigestUtils.md5Hex(request.getParameter("password"));
+		
 		User user = null;
 
 		if (idVal != null) {

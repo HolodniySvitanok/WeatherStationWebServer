@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,9 @@ public class AuthorizationController {
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
 	public ModelAndView authorizatio(ModelAndView model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String login = request.getParameter("lgn");
-		String password = request.getParameter("pswd");
+		String login = request.getParameter("lgn").trim();
+
+		String password = request.getParameter("pswd").trim();
 
 		User user = null;
 		if (!val(login) || !val(password)) {
@@ -34,8 +36,10 @@ public class AuthorizationController {
 			return model;
 		}
 
+		
+		
 		try{
-			user = userDAO.authorizationUser(new User(login, password));
+			user = userDAO.authorizationUser(new User(login, DigestUtils.md5Hex(password)));
 		}catch (Exception e) {
 			model.setViewName("authorization");
 			model.addObject("errorMessage", "неверный логин или пароль");
@@ -52,10 +56,13 @@ public class AuthorizationController {
 	
 	
 	private boolean val(String str) {
-		if (str.trim().length() > 4 && str.trim().length() < 10) {
+		if (str.trim().length() >= 4 && str.trim().length() <= 10) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+
+
 }

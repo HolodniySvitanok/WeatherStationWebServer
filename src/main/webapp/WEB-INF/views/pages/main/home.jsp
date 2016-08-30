@@ -6,27 +6,27 @@
 		<div id="table1">
 			<table>
 				<tr>
-					<td colspan="3"><h3>Погода на ${time}</h3></td>
+					<td colspan="2"><h3>Погода на ${time}</h3></td>
 				</tr>
 				<c:if test="${not empty temperature}">
 					<tr>
 						<td>Температура воздуха</td>
-						<td>${temperature}</td>
-						<td>С</td>
+						<td><b>${temperature} С</b></td>
+						
 					</tr>
 				</c:if>
 				<c:if test="${not empty pressure}">
 					<tr>
 						<td>Атмосферное давление</td>
-						<td>${pressure}</td>
-						<td>мм.рт.ст</td>
+						<td><b>${pressure} мм.рт.ст</b></td>
+						
 					</tr>
 				</c:if>
 				<c:if test="${not empty humidity}">
 					<tr>
 						<td>Влажность воздуха</td>
-						<td>${humidity}</td>
-						<td>%</td>
+						<td><b>${humidity} %</b></td>
+						
 					</tr>
 				</c:if>
 			</table>

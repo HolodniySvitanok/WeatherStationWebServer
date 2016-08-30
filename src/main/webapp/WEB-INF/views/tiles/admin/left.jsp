@@ -13,7 +13,7 @@
 		<a href="${pageContext.request.contextPath}/<%= GlobalConfig.HOOD_LINK %>/users">Пользователи</a>
 	</div>
 	<div class="leftDiv1">
-		<a href="${pageContext.request.contextPath}/<%= GlobalConfig.HOOD_LINK %>/#">Логи</a>
+		<a href="${pageContext.request.contextPath}/<%= GlobalConfig.HOOD_LINK %>/setting">Настройки</a>
 	</div>
 </div>
 

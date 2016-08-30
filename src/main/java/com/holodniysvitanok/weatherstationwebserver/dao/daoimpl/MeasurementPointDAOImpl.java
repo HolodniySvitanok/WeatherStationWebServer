@@ -68,9 +68,7 @@ public class MeasurementPointDAOImpl implements MeasurementPointDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(
 				"from MeasurementPoint where id_measuring_sensor = :sensorId and typeMeasurement = :type and datePoint between :startDate and :endDate order by date_measurement_point asc ");
-//		query.setDate("startDate", stDate);
-//		query.setDate("endDate", enDate);
-		query.setTimestamp("startDate", stDate);
+		query.setTimestamp("startDate", stDate);	
 		query.setTimestamp("endDate", enDate);
 		query.setParameter("type", type);
 		query.setParameter("sensorId", sensorId);

@@ -68,18 +68,22 @@
 	</bean>
 
 
-    <!--- фильтр   -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/*" />
-            <bean class="com.holodniysvitanok.weatherstationwebserver.interceptors.MainInterceptor" />
-        </mvc:interceptor>
-        
-<!--          <mvc:interceptor>
-            <mvc:mapping path="/hood/*" />
-            <bean class="com.holodniysvitanok.weatherstationwebserver.interceptors.AuthenticationInterceptor" />
-        </mvc:interceptor> --> 
-    </mvc:interceptors>
+	<!--- фильтр -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean
+				class="com.holodniysvitanok.weatherstationwebserver.interceptors.MainInterceptor" />
+		</mvc:interceptor>
+
+ 		<mvc:interceptor>
+			<mvc:mapping path="/hood/*" />
+			<bean
+				class="com.holodniysvitanok.weatherstationwebserver.interceptors.AuthenticationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
 
 
 </beans>

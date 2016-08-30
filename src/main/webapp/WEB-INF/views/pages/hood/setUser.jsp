@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>Пароль</td>
-			<td><input type="text" value="${user.password}" name="password"></td>
+			<td><input type="password" value="${user.password}" name="password"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Сохранить"></td>

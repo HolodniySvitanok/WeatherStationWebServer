@@ -126,6 +126,15 @@ public class MeasurementPoint implements Serializable {
 	public MeasurementPoint() {
 	}
 
+	
+	
+	public MeasurementPoint(int value, Date datePoint, TypeMeasurement typeMeasurement, MeasuringSensor measuringSensor) {
+		this.value = value;
+		this.datePoint = datePoint;
+		this.typeMeasurement = typeMeasurement;
+		this.measuringSensor = measuringSensor;
+	}
+
 	@Override
 	public String toString() {
 		return "MeasurementPoint [id=" + id + ", value=" + value + ", datePoint=" + datePoint + ", typeMeasurement=" + typeMeasurement + "]";

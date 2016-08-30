@@ -1,7 +1,9 @@
 package com.holodniysvitanok.weatherstationwebserver.controllers;
 
 import com.holodniysvitanok.weatherstationwebserver.dao.MeasurementPointDAO;
+import com.holodniysvitanok.weatherstationwebserver.dao.MeasuringSensorDAO;
 import com.holodniysvitanok.weatherstationwebserver.entity.MeasurementPoint;
+import com.holodniysvitanok.weatherstationwebserver.entity.MeasuringSensor;
 import com.holodniysvitanok.weatherstationwebserver.services.GlobalConfig;
 import com.holodniysvitanok.weatherstationwebserver.services.Period;
 import com.holodniysvitanok.weatherstationwebserver.services.PointsConverter;
@@ -11,6 +13,7 @@ import com.holodniysvitanok.weatherstationwebserver.services.chart.ChartPointers
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +31,12 @@ public class DataController {
 
 	
 	@Autowired
-	private MeasurementPointDAO measurementPointDAO; // связь с бд
+	private MeasurementPointDAO measurementPointDAO; 
 
+	@Autowired
+	private MeasuringSensorDAO measuringSensorDAO;
+	
+	
 	/*
 	 * 
 	 * возвращает в поток xml c точками (для swing клиента)
@@ -97,10 +104,50 @@ public class DataController {
 		}
 	}
 
+	/*
+	 * 
+	 * Добавление точек с датчика
+	 * 
+	 * 
+	 * */
+	@RequestMapping(value = "/addPoint", method = RequestMethod.POST)
+	public void addPoint(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		String idStr = request.getParameter("a1"); 				// ид
+		String passwordStr = request.getParameter("a2"); 		// пароль
+		
+		MeasuringSensor oneMeasuringSensorById = measuringSensorDAO.getOneMeasuringSensorById(Integer.parseInt(idStr));
+		
+		if(!oneMeasuringSensorById.getPassword().equals(passwordStr)){
+			return;
+		}
+		
+		String parameterValue = request.getParameter("val");
+		String parameterDate = request.getParameter("date"); // ИСПОЛЬЗОВАТЬ
+		
+		MeasurementPoint measurementPoint = new MeasurementPoint();
+		measurementPoint.setValue(Integer.parseInt(parameterValue));
+		measurementPoint.setDatePoint(new Date()); // TODO ЗАМЕНИТЬ
+		measurementPoint.setMeasuringSensor(new MeasuringSensor(Integer.parseInt(idStr)));
+		
+		measurementPointDAO.createMeasurementPoint(measurementPoint);
+		
+		ServletOutputStream outputStream = response.getOutputStream();
+		
+		byte [] answer = {1};          // TODO надо подумать ....
+		outputStream.write(answer);
+		
+		outputStream.close();
+	}
 	
 	
 	
-	// TODO заменить
+	
+	/*
+	 * 
+	 * Класс утилита для внешнего класса
+	 * 
+	 * */
 	private static class Utility {
 
 		final static String START_DATE = "sdate";

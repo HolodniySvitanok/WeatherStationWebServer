@@ -13,11 +13,11 @@
 }
 
 #table1{
-	width: 500px;
+	width: 290px;
 	background-color: #eaffeb;
 	border: 1px solid black;
 	margin: 50px auto;
-	text-align: center;
+	padding: 15px;
 }
 
 #image{
